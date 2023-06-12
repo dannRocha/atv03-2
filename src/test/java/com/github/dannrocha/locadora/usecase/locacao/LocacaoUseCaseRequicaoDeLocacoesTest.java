@@ -84,8 +84,8 @@ public class LocacaoUseCaseRequicaoDeLocacoesTest {
                 var registro = JogoPlataforma
                     .builder()
                     .preco(BigDecimal.valueOf(10D))
-                    .jogo(jogo)
-                    .plataforma(plataforma)
+                    .jogoId(jogo.getId())
+                    .plataformaId(plataforma.getId())
                     .build();
 
                 jogoPlataformaRepository.registrarPrecoJogoPorPlataforma(registro);

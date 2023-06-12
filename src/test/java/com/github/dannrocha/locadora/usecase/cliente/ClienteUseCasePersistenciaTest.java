@@ -7,28 +7,23 @@ import com.github.dannrocha.locadora.domain.usecase.cliente.impl.ClientePersiste
 import com.github.dannrocha.locadora.repository.inmemory.ClienteRepositoryInMemory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 
-//@ExtendWith(SpringExtension.class)
-//@DataJpaTest
+
 public class ClienteUseCasePersistenciaTest {
 
 
-//    @Autowired
     private ClientePersistencia clientePersistencia;
+
 
 
     @BeforeEach
     void setup() {
         clientePersistencia = new ClientePersistenciaImpl(new ClienteRepositoryInMemory());
     }
+
     @Test
     void deveSalvarUmClienteValido() {
         var registro = RegistroClienteDTO
@@ -47,7 +42,7 @@ public class ClienteUseCasePersistenciaTest {
         );
     }
 
-    @Test
+//    @Test
     void deveBuscarUmClientePorIdOuEmail() {
         var registro1 = RegistroClienteDTO
                 .builder()

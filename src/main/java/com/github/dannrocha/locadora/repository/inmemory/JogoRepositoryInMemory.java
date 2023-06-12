@@ -20,14 +20,8 @@ public final class JogoRepositoryInMemory extends DbInMemory<Jogo> implements Jo
     public Jogo salvar(Jogo jogo) {
         if(jogo.getId() == null) {
             contador++;
-            var jogoCopy = Jogo
-                    .builder()
-                    .id(contador)
-                    .titulo(jogo.getTitulo())
-                    .build();
-
-
-            return salvar(jogoCopy);
+            jogo.setId(contador);
+            return salvar(jogo);
         }
 
         var jogoSalvoOptional = buscarPorId(jogo.getId());

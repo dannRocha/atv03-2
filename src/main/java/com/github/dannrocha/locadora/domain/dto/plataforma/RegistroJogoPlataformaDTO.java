@@ -23,9 +23,9 @@ public record RegistroJogoPlataformaDTO(
     public JogoPlataforma toModel() {
         return JogoPlataforma
             .builder()
-            .jogo(Jogo.builder().id(jogoId).build())
+            .jogoId(jogoId)
             .preco(preco)
-            .plataforma(Plataforma.builder().id(plataformaId).build())
+            .plataformaId(plataformaId)
             .build();
     }
 }

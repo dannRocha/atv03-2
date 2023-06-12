@@ -27,17 +27,8 @@ public class ClienteRepositoryInMemory extends DbInMemory<Cliente> implements Cl
     public Cliente salvar(Cliente cliente) {
         if(cliente.getId() == null) {
             contador++;
-            var clienteCopia = Cliente
-                    .builder()
-                    .id(contador)
-                    .nome(cliente.getNome())
-                    .email(cliente.getEmail())
-                    .senha(cliente.getSenha())
-                    .telefone(cliente.getTelefone())
-                    .build();
-
-
-            return salvar(clienteCopia);
+            cliente.setId(contador);
+            return salvar(cliente);
         }
 
         var clienteSalvoOptional = buscarPorId(cliente.getId());

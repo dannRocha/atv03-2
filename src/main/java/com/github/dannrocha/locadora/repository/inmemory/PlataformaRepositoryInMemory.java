@@ -12,14 +12,9 @@ public class PlataformaRepositoryInMemory extends DbInMemory<Plataforma> impleme
     public Plataforma registarPlataforma(Plataforma plataforma) {
         if(plataforma.getId() == null) {
             this.contador++;
-            var jogoCopy = plataforma
-                    .builder()
-                    .id(contador)
-                    .nome(plataforma.getNome())
-                    .build();
+            plataforma.setId(contador);
 
-
-            return registarPlataforma(jogoCopy);
+            return registarPlataforma(plataforma);
         }
 
         var jogoSalvoOptional = buscarPorId(plataforma.getId());

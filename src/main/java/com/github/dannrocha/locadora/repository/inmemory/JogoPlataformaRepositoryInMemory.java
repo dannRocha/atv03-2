@@ -31,26 +31,19 @@ public class JogoPlataformaRepositoryInMemory extends DbInMemory<JogoPlataforma>
     public JogoPlataforma registrarPrecoJogoPorPlataforma(JogoPlataforma jogoPlataforma) {
         if(jogoPlataforma.getId() == null) {
             contador++;
-            var jogoCopy = JogoPlataforma
-                .builder()
-                .id(contador)
-                .jogo(jogoRepository.buscarPorId(jogoPlataforma.getJogo().getId()).orElseThrow())
-                .plataforma(plataformaRepository.buscarPorId(jogoPlataforma.getPlataforma().getId()).orElseThrow())
-                .preco(jogoPlataforma.getPreco())
-                .build();
-
-            return registrarPrecoJogoPorPlataforma(jogoCopy);
+            jogoPlataforma.setId(contador);
+            return registrarPrecoJogoPorPlataforma(jogoPlataforma);
         }
 
         var jogoSalvoOptional = buscarJogoPorJogoIdEPlataformaId(
             JogoPlataformaID.builder()
-                .plataformaId(jogoPlataforma.getPlataforma().getId())
-                .jogoId(jogoPlataforma.getJogo().getId())
+                .plataformaId(jogoPlataforma.getPlataformaId())
+                .jogoId(jogoPlataforma.getJogoId())
                 .build());
 
         if(jogoSalvoOptional.isPresent()) {
             var jogoSalvoIndex = db.indexOf(jogoSalvoOptional.get());
-            db.removeIf(it -> jogoSalvoOptional.get().getId().equals(it.getJogo().getId()));
+            db.removeIf(it -> jogoSalvoOptional.get().getId().equals(it.getJogoId()));
             db.add(jogoSalvoIndex, jogoPlataforma);
 
             return jogoPlataforma;
@@ -68,8 +61,8 @@ public class JogoPlataformaRepositoryInMemory extends DbInMemory<JogoPlataforma>
             .stream()
             .filter(it -> lista
                     .stream()
-                    .anyMatch(id -> id.jogoId().equals(it.getJogo().getId())
-                        && id.plataformaId().equals(it.getPlataforma().getId()))
+                    .anyMatch(id -> id.jogoId().equals(it.getJogoId())
+                        && id.plataformaId().equals(it.getPlataformaId()))
             )
             .collect(Collectors.toList());
     }
@@ -77,16 +70,16 @@ public class JogoPlataformaRepositoryInMemory extends DbInMemory<JogoPlataforma>
     @Override
     public Optional<JogoPlataforma> buscarJogoPorJogoIdEPlataformaId(JogoPlataformaID id) {
         return db.stream()
-                .filter(jp -> jp.getJogo().getId().equals(id.jogoId())
-                    && jp.getPlataforma().getId().equals(id.plataformaId()))
+                .filter(jp -> jp.getJogoId().equals(id.jogoId())
+                    && jp.getPlataformaId().equals(id.plataformaId()))
                 .map(jp -> {
                     var plataforma = plataformaRepository.buscarPorId(id.plataformaId());
                     var jogo = jogoRepository.buscarPorId(id.jogoId());
 
                     return JogoPlataforma
                         .builder()
-                        .plataforma(plataforma.orElse(Plataforma.builder().build()))
-                        .jogo(jogo.orElse(Jogo.builder().build()))
+                        .plataformaId(plataforma.orElse(Plataforma.builder().build()).getId())
+                        .jogoId(jogo.orElse(Jogo.builder().build()).getId())
                         .preco(jp.getPreco())
                         .build();
                 })

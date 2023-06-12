@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
@@ -18,17 +19,16 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @Getter
+@Setter
 public class JogoPlataforma {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-//    @Column(name = "jogo_id")
+    @Column(name = "jogo_id")
+    private Integer jogoId;
 
-    private Jogo jogo;
-
-//    @Column(name = "plataforma_id")
-    @OneToMany
-    private Plataforma plataforma;
+    @Column(name = "plataforma_id")
+    private Integer plataformaId;
 
     private BigDecimal preco;
 }

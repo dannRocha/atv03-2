@@ -5,6 +5,7 @@ import com.github.dannrocha.locadora.domain.repository.JogoPlataformaRepository;
 import com.github.dannrocha.locadora.domain.repository.JogoRepository;
 import com.github.dannrocha.locadora.domain.repository.LocacaoRepository;
 import com.github.dannrocha.locadora.domain.repository.PlataformaRepository;
+import com.github.dannrocha.locadora.domain.usecase.cliente.ClientePersistencia;
 import com.github.dannrocha.locadora.repository.inmemory.ClienteRepositoryInMemory;
 import com.github.dannrocha.locadora.repository.inmemory.JogoPlataformaRepositoryInMemory;
 import com.github.dannrocha.locadora.repository.inmemory.JogoRepositoryInMemory;
@@ -26,7 +27,6 @@ public class ConfiguracaoRepositorioDI {
 
     private final PlataformaRepositoryInMemory plataformaRepositoryInMemory;
     private final LocacaoRepositoryInMemory locacaoRepositoryInMemory;
-
     private final JogoPlataformaRepositoryInMemory jogoPlataformaRepositoryInMemory;
 
     public ConfiguracaoRepositorioDI(JogoRepositoryInMemory jogoRepositoryInMemory, ClienteRepositoryInMemory clienteRepositoryInMemory, ClienteRepositoryJPAAdapter clienteRepositoryJPA, PlataformaRepositoryInMemory plataformaRepositoryInMemory, LocacaoRepositoryInMemory locacaoRepositoryInMemory, JogoPlataformaRepositoryInMemory jogoPlataformaRepositoryInMemory) {
@@ -67,5 +67,6 @@ public class ConfiguracaoRepositorioDI {
     LocacaoRepository configuracaoDILocacaoRepository() {
         return locacaoRepositoryInMemory;
     }
+
 
 }

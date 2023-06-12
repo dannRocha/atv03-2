@@ -12,14 +12,8 @@ public class LocacaoRepositoryInMemory extends DbInMemory<Locacao> implements Lo
     public Locacao salvar(Locacao locacao) {
         if(locacao.getId() == null) {
             contador++;
-            var locacaoCopia = Locacao
-                    .builder()
-                    .id(contador)
-                    .data(locacao.getData())
-                    .build();
-
-
-            return salvar(locacaoCopia);
+            locacao.setId(contador);
+            return salvar(locacao);
         }
 
         var locacaolSalvoOptional = buscarPorId(locacao.getId());

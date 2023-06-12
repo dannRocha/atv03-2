@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 
+@Component
 public final class ClientePersistenciaImpl extends ClientePersistencia {
 
     private final ClienteRepository repositorio;
