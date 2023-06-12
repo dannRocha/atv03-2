@@ -24,9 +24,9 @@ public class RegistroLocacaoJogoDTODataBuilder {
         var list = new ArrayList<RegistroLocacaoDTO>();
 
         var jogos = List.of(
-            RegistroLocacaoJogoDTO.builder().jogoId(1).plataformaId(1).build(),
-            RegistroLocacaoJogoDTO.builder().jogoId(1).plataformaId(2).build(),
-            RegistroLocacaoJogoDTO.builder().jogoId(2).plataformaId(1).build()
+            RegistroLocacaoJogoDTO.builder().jogoId(1).quantidadeDeDias(7).plataformaId(1).build(),
+            RegistroLocacaoJogoDTO.builder().jogoId(1).quantidadeDeDias(7).plataformaId(2).build(),
+            RegistroLocacaoJogoDTO.builder().jogoId(2).quantidadeDeDias(7).plataformaId(1).build()
         );
 
         var registro = RegistroLocacaoDTO
@@ -37,9 +37,9 @@ public class RegistroLocacaoJogoDTODataBuilder {
         list.add(registro);
 
         jogos = List.of(
-            RegistroLocacaoJogoDTO.builder().jogoId(3).plataformaId(1).build(),
-            RegistroLocacaoJogoDTO.builder().jogoId(3).plataformaId(2).build(),
-            RegistroLocacaoJogoDTO.builder().jogoId(4).plataformaId(1).build()
+            RegistroLocacaoJogoDTO.builder().jogoId(3).quantidadeDeDias(7).plataformaId(1).build(),
+            RegistroLocacaoJogoDTO.builder().jogoId(3).quantidadeDeDias(7).plataformaId(2).build(),
+            RegistroLocacaoJogoDTO.builder().jogoId(4).quantidadeDeDias(7).plataformaId(1).build()
         );
 
         registro = RegistroLocacaoDTO

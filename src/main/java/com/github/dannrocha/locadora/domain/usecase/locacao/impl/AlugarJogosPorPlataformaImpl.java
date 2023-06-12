@@ -9,6 +9,7 @@ import com.github.dannrocha.locadora.domain.usecase.locacao.LocacaoPersistencia;
 import com.github.dannrocha.locadora.domain.usecase.plataforma.JogoPlataformaPersistancia;
 import jakarta.transaction.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,14 +33,28 @@ public class AlugarJogosPorPlataformaImpl implements AlugarJogosPorPlataforma {
             throw new RuntimeException();
         }
 
-        var JogosEValores = associarPrecosPlataformaEJogos(registro, jogosPorPlataforma);
+        var JogosValores = associarPrecosPlataformaEJogos(registro, jogosPorPlataforma);
+
 
         var locacao = RegistroLocacaoDTO
             .builder()
-            .jogos(JogosEValores)
+            .jogos(JogosValores)
             .build();
 
-        return locacaoPersistencia.salvar(locacao);
+        var total = JogosValores
+            .stream()
+            .map(RegistroLocacaoJogoDTO::preco)
+            .reduce(BigDecimal::add)
+            .orElse(BigDecimal.ZERO);
+
+        var locacaoSalvo = locacaoPersistencia.salvar(locacao);
+
+        return SimpleLocacaoDTO
+            .builder()
+            .id(locacaoSalvo.id())
+            .data(locacaoSalvo.data())
+            .total(total)
+            .build();
     }
 
     @Override
