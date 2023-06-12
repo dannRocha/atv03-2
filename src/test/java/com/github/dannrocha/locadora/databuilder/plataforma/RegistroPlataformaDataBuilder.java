@@ -1,4 +1,4 @@
-package com.github.dannrocha.locadora.databuilder;
+package com.github.dannrocha.locadora.databuilder.plataforma;
 
 import com.github.dannrocha.locadora.domain.dto.plataforma.RegistroPlataformaDTO;
 

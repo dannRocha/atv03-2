@@ -1,30 +1,35 @@
 package com.github.dannrocha.locadora.domain.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 
+@Entity
 @Table(name = "item_locacao")
 @Builder
-public record ItemLocacao(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer id,
-    @Column(nullable = false)
-    Integer dias,
-    @Column(nullable = false)
-    Integer quantidade,
+@AllArgsConstructor
+@Getter
+public class ItemLocacao {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(nullable = false)
-    BigDecimal preco,
+    private Integer dias;
+
+    @Column(nullable = false)
+    private BigDecimal preco;
 
     @Column(name = "plataforma_id")
-    Integer plataformaId,
+    private Integer plataformaId;
 
     @Column(name = "locacao_id")
-    Integer locacaoId
-) {
+    private Integer locacaoId;
 }

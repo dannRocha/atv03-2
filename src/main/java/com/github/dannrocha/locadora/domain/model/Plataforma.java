@@ -1,15 +1,22 @@
 package com.github.dannrocha.locadora.domain.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
+@Entity
 @Table(name = "plataforma")
 @Builder
-public record Plataforma(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)  Integer id,
-    String nome
-) {
+@AllArgsConstructor
+@Getter
+public class Plataforma {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String nome;
 }

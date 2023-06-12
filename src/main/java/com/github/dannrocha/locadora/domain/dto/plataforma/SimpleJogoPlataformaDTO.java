@@ -15,9 +15,9 @@ public record SimpleJogoPlataformaDTO(
     public static SimpleJogoPlataformaDTO fromModel(JogoPlataforma jogoPlataforma) {
         return SimpleJogoPlataformaDTO
             .builder()
-            .jogo(SimpleJogoDTO.fromModel(jogoPlataforma.jogo()))
-            .plataforma(SimplePlataformaDTO.fromModel(jogoPlataforma.plataforma()))
-            .preco(jogoPlataforma.preco())
+            .jogo(SimpleJogoDTO.fromModel(jogoPlataforma.getJogo()))
+            .plataforma(SimplePlataformaDTO.fromModel(jogoPlataforma.getPlataforma()))
+            .preco(jogoPlataforma.getPreco())
             .build();
     }
 }

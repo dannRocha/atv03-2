@@ -13,9 +13,9 @@ public record SimpleClienteDTO(
     public static SimpleClienteDTO fromCliente(Cliente cliente) {
         return SimpleClienteDTO
             .builder()
-            .email(cliente.email())
-            .nome(cliente.nome())
-            .id(cliente.id())
+            .email(cliente.getEmail())
+            .nome(cliente.getNome())
+            .id(cliente.getId())
             .build();
     }
 }

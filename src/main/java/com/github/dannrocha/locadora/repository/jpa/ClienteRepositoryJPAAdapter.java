@@ -2,6 +2,7 @@ package com.github.dannrocha.locadora.repository.jpa;
 
 import com.github.dannrocha.locadora.domain.model.Cliente;
 import com.github.dannrocha.locadora.domain.repository.ClienteRepository;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ public class ClienteRepositoryJPAAdapter implements ClienteRepository {
 
     private final ClienteJpaIntegration clienteJpaIntegration;
 
-    public ClienteRepositoryJPAAdapter(ClienteJpaIntegration clienteJpaIntegration) {
+    public ClienteRepositoryJPAAdapter(@Lazy ClienteJpaIntegration clienteJpaIntegration) {
         this.clienteJpaIntegration = clienteJpaIntegration;
     }
 

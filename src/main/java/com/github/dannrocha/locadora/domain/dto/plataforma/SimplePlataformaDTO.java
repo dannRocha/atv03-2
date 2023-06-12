@@ -12,8 +12,8 @@ public record SimplePlataformaDTO(
     public static SimplePlataformaDTO fromModel(Plataforma plataforma) {
         return SimplePlataformaDTO
             .builder()
-            .nome(plataforma.nome())
-            .id(plataforma.id())
+            .nome(plataforma.getNome())
+            .id(plataforma.getId())
             .build();
     }
 }

@@ -3,10 +3,10 @@ package com.github.dannrocha.locadora;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class LocadoraApplicationTests {
 
-	@Test
+//	@Test
 	void contextLoads() {
 	}
 

@@ -12,8 +12,8 @@ public record SimpleJogoDTO(
     public static SimpleJogoDTO fromModel(Jogo jogo) {
         return SimpleJogoDTO
             .builder()
-            .id(jogo.id())
-            .titulo(jogo.titulo())
+            .id(jogo.getId())
+            .titulo(jogo.getTitulo())
             .build();
     }
 }

@@ -13,8 +13,8 @@ public record SimpleLocacaoDTO(
     public static SimpleLocacaoDTO fromModel(Locacao locacao) {
         return SimpleLocacaoDTO
             .builder()
-            .id(locacao.id())
-            .data(locacao.data())
+            .id(locacao.getId())
+            .data(locacao.getData())
             .build();
     }
 }

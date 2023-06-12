@@ -1,6 +1,6 @@
 package com.github.dannrocha.locadora.usecase.locacao;
 
-import com.github.dannrocha.locadora.databuilder.RegistroPlataformaDataBuilder;
+import com.github.dannrocha.locadora.databuilder.plataforma.RegistroPlataformaDataBuilder;
 import com.github.dannrocha.locadora.databuilder.jogo.RegistroJogoDataBuilder;
 import com.github.dannrocha.locadora.domain.dto.plataforma.RegistroJogoPlataformaDTO;
 import com.github.dannrocha.locadora.domain.dto.plataforma.SimpleJogoPlataformaDTO;
@@ -32,7 +32,8 @@ public class LocalcaoUseCaseRegistrarJogoPlataforma {
     void setup() {
         jogoRepository = new JogoRepositoryInMemory();
         plataformaRepository = new PlataformaRepositoryInMemory();
-        jogoPlataformaPersistancia = JogoPlataformaPersistenciaFactory.criar(jogoRepository, plataformaRepository);
+        jogoPlataformaPersistancia = JogoPlataformaPersistenciaFactory
+                .criar(jogoRepository, plataformaRepository);
     }
 
     @Test

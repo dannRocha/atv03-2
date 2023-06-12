@@ -2,12 +2,15 @@ package com.github.dannrocha.locadora.domain.usecase.locacao.impl.facade;
 
 import com.github.dannrocha.locadora.domain.dto.locacao.RegistroLocacaoDTO;
 import com.github.dannrocha.locadora.domain.dto.locacao.SimpleLocacaoDTO;
+import com.github.dannrocha.locadora.domain.model.Locacao;
 import com.github.dannrocha.locadora.domain.repository.ItemLocacaoRepository;
 import com.github.dannrocha.locadora.domain.repository.LocacaoRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-@Component
+import java.time.LocalDate;
+
 public class RegistrarLocacaoFacade {
 
     private final LocacaoRepository locacaoRepository;
@@ -24,8 +27,10 @@ public class RegistrarLocacaoFacade {
 
     @Transactional
     public SimpleLocacaoDTO salvar(RegistroLocacaoDTO registro) {
-        var locacaoSalva = locacaoRepository.salvar(registro.toModelLocacao());
-        itemLocacaoRepository.salvarMuitos(registro.toModelItemLocacao(locacaoSalva.id()));
+        var locacao = new Locacao(null, LocalDate.now());
+
+        var locacaoSalva = locacaoRepository.salvar(locacao);
+        itemLocacaoRepository.salvarMuitos(registro.toModelItemLocacao(locacaoSalva.getId()));
 
         return SimpleLocacaoDTO.fromModel(locacaoSalva);
     }

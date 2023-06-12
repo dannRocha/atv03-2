@@ -1,43 +1,27 @@
 package com.github.dannrocha.locadora.domain.dto.locacao;
 
 import com.github.dannrocha.locadora.domain.model.ItemLocacao;
-import com.github.dannrocha.locadora.domain.model.Locacao;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Builder
 public record RegistroLocacaoDTO(
+    List<RegistroLocacaoJogoDTO> jogos
 
-    @NotNull
-    LocalDate data,
-
-    @NotNull
-    Integer plataformaId,
-    List<RegistroItemLocaoDTO> items
 ) {
-    public Locacao toModelLocacao() {
-        return Locacao.builder()
-                .data(this.data)
-                .build();
-    }
-
-    public List<ItemLocacao> toModelItemLocacao(Integer locacaoId) {
-        return items.stream()
-                .map(item -> ItemLocacao
-                    .builder()
-                        .dias(item.dias())
-                        .locacaoId(locacaoId)
-                        .quantidade(item.quantidade())
-                        .plataformaId(plataformaId)
-                        .build()
-                )
-                .collect(Collectors.toList());
-    }
-
-    public List<ItemLocacao> toModelItemLocacao() {
-        return toModelItemLocacao(null);
+    public List<ItemLocacao> toModelItemLocacao(Integer id) {
+        return jogos
+            .stream()
+            .map(jogo ->
+                ItemLocacao.builder()
+                .id(null)
+                .dias(jogo.quantidadeDeDias())
+                .locacaoId(id)
+                .preco(jogo.preco())
+                .plataformaId(jogo.plataformaId())
+                .build())
+            .collect(Collectors.toList());
     }
 }

@@ -10,24 +10,24 @@ import java.util.Optional;
 public class PlataformaRepositoryInMemory extends DbInMemory<Plataforma> implements PlataformaRepository {
     @Override
     public Plataforma registarPlataforma(Plataforma plataforma) {
-        if(plataforma.id() == null) {
+        if(plataforma.getId() == null) {
             this.contador++;
             var jogoCopy = plataforma
                     .builder()
                     .id(contador)
-                    .nome(plataforma.nome())
+                    .nome(plataforma.getNome())
                     .build();
 
 
             return registarPlataforma(jogoCopy);
         }
 
-        var jogoSalvoOptional = buscarPorId(plataforma.id());
+        var jogoSalvoOptional = buscarPorId(plataforma.getId());
 
         if(jogoSalvoOptional.isPresent()) {
-            var jogoSalvoIndex = db.indexOf(jogoSalvoOptional.get());
-            db.remove(jogoSalvoIndex);
-            db.add(jogoSalvoIndex, plataforma);
+//            var jogoSalvoIndex = db.indexOf(jogoSalvoOptional.get());
+//            db.remove(jogoSalvoIndex);
+//            db.add(jogoSalvoIndex, plataforma);
 
             return plataforma;
         }
@@ -40,7 +40,7 @@ public class PlataformaRepositoryInMemory extends DbInMemory<Plataforma> impleme
     @Override
     public Optional<Plataforma> buscarPorId(Integer plataformaId) {
         return db.stream()
-            .filter(plataforma -> plataforma.id().equals(plataformaId))
+            .filter(plataforma -> plataforma.getId().equals(plataformaId))
             .findFirst();
     }
 }
