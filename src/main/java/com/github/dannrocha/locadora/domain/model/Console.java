@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
 @Table(name = "console")
 @AllArgsConstructor
 @Getter
+@Builder
 public class Console {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

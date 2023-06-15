@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
 public interface ClienteRepository {
     Optional<Cliente> buscarPorId(Integer id);
     Optional<Cliente> buscarPorEmail(String email);

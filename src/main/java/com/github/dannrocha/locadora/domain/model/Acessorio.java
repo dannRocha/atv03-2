@@ -9,6 +9,8 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "acessorio")
 @Getter
@@ -17,5 +19,6 @@ public class Acessorio {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+    private BigDecimal preco;
 
 }

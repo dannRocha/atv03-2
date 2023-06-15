@@ -4,6 +4,7 @@ import com.github.dannrocha.locadora.domain.model.Locacao;
 import com.github.dannrocha.locadora.domain.repository.LocacaoRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -36,5 +37,13 @@ public class LocacaoRepositoryInMemory extends DbInMemory<Locacao> implements Lo
         return db.stream()
             .filter(locacao -> locacao.getId().equals(locacaoId))
             .findFirst();
+    }
+
+    @Override
+    public List<Locacao> salvarMuitos(List<Locacao> locacoes) {
+        return locacoes
+            .stream()
+            .map(this::salvar)
+            .toList();
     }
 }

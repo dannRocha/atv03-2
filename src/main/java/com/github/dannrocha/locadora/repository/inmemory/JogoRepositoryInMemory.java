@@ -4,6 +4,7 @@ import com.github.dannrocha.locadora.domain.model.Jogo;
 import com.github.dannrocha.locadora.domain.repository.JogoRepository;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Component
@@ -37,5 +38,17 @@ public final class JogoRepositoryInMemory extends DbInMemory<Jogo> implements Jo
         db.add(jogo);
 
         return jogo;
+    }
+
+    @Override
+    public Optional<Jogo> buscarJogoPorNome(String nome) {
+        return db.stream()
+                .filter(jogo -> jogo.getTitulo().equalsIgnoreCase(nome))
+                .findFirst();
+    }
+
+    @Override
+    public Optional<Jogo> buscarJogoDisponivelPorNomeEData(String nome, LocalDate data) {
+        return Optional.empty();
     }
 }
